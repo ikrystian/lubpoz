@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LUBPOŻ – Strona w przygotowaniu</title>
+  <meta name="description"
+    content="Strona LUBPOŻ jest w przygotowaniu. Skontaktuj się z nami: Biuro@lubpoz.pl, tel. 737 735 148" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --fire-red: #e81c1c;
+      --fire-orange: #f05a1a;
+      --fire-amber: #f59b00;
+      --fire-yellow: #ffd200;
+      --dark-bg: #f4f4f2;
+      --dark-card: #ffffff;
+      --dark-border: rgba(0, 0, 0, 0.09);
+      --text-main: #1a1a1a;
+      --text-muted: #777;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--dark-bg);
+      background-image: radial-gradient(ellipse at 60% 0%, rgba(240, 90, 26, 0.08) 0%, transparent 60%),
+        radial-gradient(ellipse at 30% 100%, rgba(255, 210, 0, 0.07) 0%, transparent 60%);
+      color: var(--text-main);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* ── Particle canvas ── */
+    #particles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Radial glow behind content ── */
+    .bg-glow {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -60%);
+      width: 700px;
+      height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(240, 90, 26, 0.10) 0%, rgba(232, 28, 28, 0.04) 50%, transparent 75%);
+      pointer-events: none;
+      z-index: 0;
+      animation: glowPulse 4s ease-in-out infinite;
+    }
+
+    @keyframes glowPulse {
+
+      0%,
+      100% {
+        opacity: 0.8;
+        transform: translate(-50%, -60%) scale(1);
+      }
+
+      50% {
+        opacity: 1;
+        transform: translate(-50%, -60%) scale(1.1);
+      }
+    }
+
+    /* ── Layout ── */
+    .page {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px 60px;
+      gap: 0;
+    }
+
+    /* ── SVG Flame ── */
+    .flame-wrap {
+
+      position: relative;
+
+    }
+
+    /* ── Logo wordmark ── */
+    .logo-text {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(3.5rem, 10vw, 6rem);
+      letter-spacing: 0.04em;
+      background: linear-gradient(135deg, #1a1a1a 0%, #3a3a3a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 28px;
+      animation: fadeUp 0.8s ease both;
+      animation-delay: 0.2s;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      width: 80px;
+      height: 3px;
+      border-radius: 2px;
+      background: linear-gradient(90deg, var(--fire-yellow), var(--fire-orange), var(--fire-red));
+      margin-bottom: 28px;
+      animation: expandWidth 1s ease both;
+      animation-delay: 0.4s;
+    }
+
+    @keyframes expandWidth {
+      from {
+        width: 0;
+        opacity: 0;
+      }
+
+      to {
+        width: 80px;
+        opacity: 1;
+      }
+    }
+
+    /* ── Headline ── */
+    .headline {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.3rem, 4vw, 2rem);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--fire-orange);
+      margin-bottom: 12px;
+      animation: fadeUp 0.8s ease both;
+      animation-delay: 0.5s;
+    }
+
+    .subline {
+      font-size: 1rem;
+      color: var(--text-muted);
+      text-align: center;
+      max-width: 420px;
+      line-height: 1.6;
+      margin-bottom: 52px;
+      animation: fadeUp 0.8s ease both;
+      animation-delay: 0.65s;
+    }
+
+    /* ── Contact card ── */
+    .contact-card {
+      background: var(--dark-card);
+      border: 1px solid var(--dark-border);
+      border-radius: 20px;
+      padding: 40px 48px;
+      max-width: 480px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      position: relative;
+      overflow: hidden;
+      animation: fadeUp 0.8s ease both;
+      animation-delay: 0.8s;
+      box-shadow: 0 4px 40px rgba(0, 0, 0, 0.10), 0 1px 6px rgba(0, 0, 0, 0.06);
+    }
+
+    .contact-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--fire-yellow), var(--fire-orange), var(--fire-red));
+    }
+
+    .contact-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--fire-orange);
+      margin-bottom: 2px;
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .contact-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: rgba(240, 90, 26, 0.08);
+      border: 1px solid rgba(240, 90, 26, 0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.25s, border-color 0.25s;
+    }
+
+    .contact-row:hover .contact-icon {
+      background: rgba(240, 90, 26, 0.25);
+      border-color: rgba(240, 90, 26, 0.5);
+    }
+
+    .contact-icon svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--fire-orange);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .contact-value {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-main);
+      text-decoration: none;
+      transition: color 0.2s;
+      letter-spacing: 0.01em;
+    }
+
+    a.contact-value:hover {
+      color: var(--fire-orange);
+    }
+
+    .contact-sub {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .separator {
+      height: 1px;
+      background: var(--dark-border);
+    }
+
+    /* ── Footer note ── */
+    .footer-note {
+      margin-top: 40px;
+      font-size: 0.75rem;
+      color: #aaa;
+      letter-spacing: 0.05em;
+      animation: fadeUp 0.8s ease both;
+      animation-delay: 1s;
+    }
+
+    /* ── Animations ── */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 520px) {
+      .contact-card {
+        padding: 28px 24px;
+      }
+
+      .flame-wrap {}
+    }
+  </style>
+</head>
+
+<body>
+
+  <canvas id="particles"></canvas>
+  <div class="bg-glow"></div>
+
+  <main class="page" role="main">
+
+    <!-- Animated SVG flame (recreated from logo gradient) -->
+    <div class="flame-wrap" aria-hidden="true">
+      <img src="./logo.webp" alt="Logo">
+    </div>
+
+    <!-- Wordmark -->
+    <h1 class="logo-text">LUBPOŻ</h1>
+
+    <div class="divider"></div>
+
+    <p class="headline">Coming Soon</p>
+    <p class="subline">Nowa strona jest w przygotowaniu. <br>W razie pytań — skontaktuj się z nami bezpośrednio.</p>
+
+    <!-- Contact card -->
+    <address class="contact-card" style="font-style:normal;">
+
+      <div class="contact-row">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+            <polyline points="22,6 12,13 2,6" />
+          </svg>
+        </div>
+        <div class="contact-info">
+          <span class="contact-label">E-mail</span>
+          <a href="mailto:Biuro@lubpoz.pl" class="contact-value" id="email-link">Biuro@lubpoz.pl</a>
+        </div>
+      </div>
+
+      <div class="separator"></div>
+
+      <div class="contact-row">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.72A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
+          </svg>
+        </div>
+        <div class="contact-info">
+          <span class="contact-label">Telefon</span>
+          <a href="tel:+48737735148" class="contact-value" id="phone-link">737 735 148</a>
+        </div>
+      </div>
+
+      <div class="separator"></div>
+
+      <div class="contact-row">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+            <circle cx="12" cy="10" r="3" />
+          </svg>
+        </div>
+        <div class="contact-info">
+          <span class="contact-label">Adres</span>
+          <span class="contact-value">ul. Tomasza Zana 43/2.1</span>
+          <span class="contact-sub">20-601 Lublin</span>
+        </div>
+      </div>
+
+      <div class="separator"></div>
+
+      <div class="contact-row">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24">
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+            <path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16" />
+          </svg>
+        </div>
+        <div class="contact-info">
+          <span class="contact-label">NIP</span>
+          <span class="contact-value" id="nip">7123494670</span>
+        </div>
+      </div>
+
+    </address>
+
+    <p class="footer-note">© 2026 LUBPOŻ — Wszelkie prawa zastrzeżone</p>
+
+  </main>
+
+  <script>
+    // ── Particle System ──────────────────────────────────────────────
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+
+    let W, H, particles = [];
+
+    const COLORS = [
+      'rgba(255,210,0,',
+      'rgba(240,90,26,',
+      'rgba(232,28,28,',
+      'rgba(245,155,0,',
+    ];
+
+    class Particle {
+      constructor() { this.reset(true); }
+
+      reset(initial = false) {
+        this.x = Math.random() * W;
+        this.y = initial ? Math.random() * H : H + 10;
+        this.size = Math.random() * 3 + 1;
+        this.speedY = -(Math.random() * 0.6 + 0.3);
+        this.speedX = (Math.random() - 0.5) * 0.4;
+        this.life = 0;
+        this.maxLife = Math.random() * 200 + 120;
+        this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
+      }
+
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        this.life++;
+        if (this.life > this.maxLife || this.y < -10) this.reset();
+      }
+
+      draw() {
+        const alpha = Math.sin((this.life / this.maxLife) * Math.PI) * 0.55;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = this.color + alpha + ')';
+        ctx.fill();
+      }
+    }
+
+    function init() {
+      W = canvas.width = window.innerWidth;
+      H = canvas.height = window.innerHeight;
+      particles = Array.from({ length: 90 }, () => new Particle());
+    }
+
+    function loop() {
+      ctx.clearRect(0, 0, W, H);
+      particles.forEach(p => { p.update(); p.draw(); });
+      requestAnimationFrame(loop);
+    }
+
+    window.addEventListener('resize', init);
+    init();
+    loop();
+  </script>
+
+</body>
+
+</html>
